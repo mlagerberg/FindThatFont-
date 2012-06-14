@@ -1,0 +1,11 @@
+<!ENTITY  app.description    "For easy archiving of your fonts">
+
+<!ENTITY  creator.label      "Creator:">
+<!ENTITY  icons.label        "Icons:">
+<!ENTITY  donate.label       "Donate:">
+<!ENTITY  donate.description "To be honest, a lot of work and time have gone into creating this application. &brandShortName; is a free application, and if you want to support it, please consider giving a small donation. It will be greatly appreciated. To donate, press the button below. A PayPal account is not required.">
+<!ENTITY  pangram.one        "Jackdaws love my big sphinx of quartz.">
+<!ENTITY  pangram.two        "The quick brown fox jumps over the lazy dog.">
+<!ENTITY  pangram.three      "Woven silk pyjamas exchanged for blue quartz.">
+<!ENTITY  pangram.four       "My faxed joke won a pager in the cable TV quiz show.">
+<!ENTITY  pangram.five       "Lorem Ipsum Dolor Sit Amet 1234567890">

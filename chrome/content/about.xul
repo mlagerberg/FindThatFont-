@@ -1,0 +1,71 @@
+<?xml version="1.0"?>
+<!--
+-    This file is part of FindThatFont!
+-
+-    FindThatFont! is free software: you can redistribute it and/or modify
+-    it under the terms of the GNU General Public License as published by
+-    the Free Software Foundation, either version 3 of the License, or
+-    (at your option) any later version.
+-
+-    FindThatFont! is distributed in the hope that it will be useful,
+-    but WITHOUT ANY WARRANTY; without even the implied warranty of
+-    MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the
+-    GNU General Public License for more details.
+-   
+-    You should have received a copy of the GNU General Public License
+-    along with FindThatFont!. If not, see <http://www.gnu.org/licenses/>.
+-->
+<?xml-stylesheet href="chrome://global/skin/" type="text/css"?> 
+<?xml-stylesheet href="chrome://findthatfont/skin/about.css" type="text/css"?> 
+
+<!DOCTYPE dialog [
+  <!ENTITY % brandDTD SYSTEM "chrome://branding/locale/brand.dtd">
+  %brandDTD;
+  <!ENTITY % aboutDTD SYSTEM "chrome://findthatfont/locale/findthatfont.dtd">
+  %aboutDTD;
+]>
+<dialog id="genericAbout"
+        xmlns="http://www.mozilla.org/keymaster/gatekeeper/there.is.only.xul"
+        xmlns:html="http://www.w3.org/1999/xhtml"
+        buttons="accept">
+
+    <script type="text/javascript"><![CDATA[
+        function loadHomepage(homepage) {
+            try {
+                window.close();
+                window.opener.launchURL(homepage);
+            } catch(e) {}
+        }
+    ]]></script>
+    
+    <vbox id="clientBox" flex="1">
+        <hbox>
+            <vbox>
+                <label id="extensionName" crop="right">&brandFullName;</label>
+                <label id="extensionVersion" crop="right">&app.version;</label>
+                <description id="extensionDescription" class="indent">&app.description;</description>
+            </vbox>
+            <spacer flex="1"/>
+            <vbox>
+                <image src="chrome://findthatfont/skin/images/logo.png"/>
+            </vbox>
+        </hbox>
+        
+        <label class="sectionTitle">&creator.label;</label>
+        <hbox id="creatorBox" class="indent">
+            <label id="extensionCreator" flex="1" crop="right">&app.creator;</label>
+            <label id="extensionHomepage" onclick="loadHomepage('&app.url;');"
+                   class="text-link" value="&app.url;"/>
+        </hbox>
+          
+        <label id="extensionDevelopers" class="sectionTitle">&icons.label;</label>
+        <hbox flex="1" id="developersBox" class="indent">
+            <label id="extensionDeveloper" flex="1" crop="right">&app.silkicons;</label>
+            <label id="extensionHomepage" onclick="loadHomepage('&app.silkiconsUrl;');"
+                   class="text-link" value="&app.silkiconsUrl;"/>
+        </hbox>
+    </vbox>
+      
+    <separator id="groove" class="groove"/>
+
+</dialog>

@@ -1,0 +1,4 @@
+content findthatfont content/
+locale  branding     en-US branding/
+locale  findthatfont en-US locale/en-US/
+skin    findthatfont classic/1.0 skin/classic/

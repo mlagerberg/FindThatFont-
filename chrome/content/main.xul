@@ -1,0 +1,418 @@
+<?xml version="1.0" encoding="utf-8" ?>
+
+<!--
+-    This file is part of FindThatFont!
+-
+-    FindThatFont! is free software: you can redistribute it and/or modify
+-    it under the terms of the GNU General Public License as published by
+-    the Free Software Foundation, either version 3 of the License, or
+-    (at your option) any later version.
+-
+-    FindThatFont! is distributed in the hope that it will be useful,
+-    but WITHOUT ANY WARRANTY; without even the implied warranty of
+-    MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the
+-    GNU General Public License for more details.
+-   
+-    You should have received a copy of the GNU General Public License
+-    along with FindThatFont!. If not, see <http://www.gnu.org/licenses/>.
+-->
+
+<?xml-stylesheet href="chrome://global/skin/toolbar.css" type="text/css"?>
+<?xml-stylesheet href="chrome://global/skin/toolbarbutton.css" type="text/css"?>
+<?xml-stylesheet href="chrome://global/skin/browser.css" type="text/css"?>
+<?xml-stylesheet href="chrome://global/skin/richlistbox.css" type="text/css"?>
+<?xml-stylesheet href="chrome://global/content/xul.css" type="text/css"?>
+<?xml-stylesheet href="chrome://global/skin/global.css" type="text/css"?>
+<?xml-stylesheet href="chrome://global/skin/findBar.css" type="text/css"?>
+<?xml-stylesheet href="chrome://findthatfont/skin/main.css" type="text/css"?>
+
+<!DOCTYPE window [
+  <!ENTITY % brandDTD SYSTEM "chrome://branding/locale/brand.dtd">
+  %brandDTD;
+  <!ENTITY % aboutDTD SYSTEM "chrome://findthatfont/locale/findthatfont.dtd">
+  %aboutDTD;
+  <!ENTITY % interfaceDTD SYSTEM "chrome://findthatfont/locale/interface.dtd">
+  %interfaceDTD;
+]>
+<window id="xul-main"
+				xmlns="http://www.mozilla.org/keymaster/gatekeeper/there.is.only.xul"
+				xmlns:html="http://www.w3.org/1999/xhtml"
+				onload="init()"
+				onclose="doClose()"
+				width="768"
+				height="640"
+				title="&brandShortName;"
+				persist="sizemode width height screenX screenY"
+      >
+
+<script src="chrome://findthatfont/content/global.js"    type="text/javascript"/>
+<script src="chrome://findthatfont/content/classes.js"   type="text/javascript"/>
+<script src="chrome://findthatfont/content/interface.js" type="text/javascript"/>
+<script src="chrome://findthatfont/content/fonts.js"     type="text/javascript"/>
+<script src="chrome://findthatfont/content/fileio.js"    type="text/javascript"/>
+<script src="chrome://findthatfont/content/addons.js"    type="text/javascript"/>
+
+<stringbundleset id="main-stringbundleset">
+    <stringbundle id="stringbundle-brand" src="chrome://branding/locale/brand.properties"/>
+</stringbundleset>
+
+<commandset id="main-commands">
+    <command id="Action:empty"        oncommand=""/><!-- dirty hack to allow easy disabling of menu items that do not fire events -->
+    <command id="Action:print"        oncommand="printContent(false)"/>
+    <command id="Action:preview"      oncommand="printContent(true)"/>
+    <command id="Action:hide"         oncommand="hideFont()"/>
+    <!-- command id="Action:search"       oncommand="search()"/ -->
+    <command id="Action:cancel"       oncommand="stopProcess()"/>
+    <command id="Action:clearSearch"  oncommand="clearSearch()"/>
+    <command id="Action:searchFocus"  oncommand="document.getElementById('search-bar').select();"/>
+    <command id="Export:html"         oncommand="exportToHtml()"/>
+    <command id="Export:ini"          oncommand="exportIni()"/>
+    <command id="Import:ini"          oncommand="importIni()"/>
+    <command id="Window:close"        oncommand="doClose()"/>
+    <command id="Window:addons"       oncommand="showAddons()"/>
+    <command id="Window:update"       oncommand="checkForUpdates()"/>
+    <command id="Window:about"        oncommand="showAbout()"/>
+    <command id="Window:help"         oncommand="showHelp()"/>
+    <command id="Window:prefs"        oncommand="showOptions()"/>
+    <command id="Window:edit"         oncommand="showEdit(true)"/>
+    <command id="Window:edit2"        oncommand="showEdit(false)"/>
+    <command id="Window:edit_classes" oncommand="showEditClasses()"/>
+    <command id="Window:console"      oncommand="showJSConsole()"/>
+    <command id="Window:config"       oncommand="showAboutConfig()"/>
+    <command id="Fonts:refresh"       oncommand="listFonts()"/>
+    <command id="Fonts:refresh_maybe" oncommand="listFontsMaybe()"/>
+    <command id="Fonts:bold"          oncommand="toggleStyle('btnBold');"/>
+    <command id="Fonts:italic"        oncommand="toggleStyle('btnItalic');"/>
+    <command id="Fonts:allcaps"       oncommand="toggleStyle('btnAllCaps');"/>
+    <command id="Fonts:home"          oncommand="selectCategory('home');"/>
+    <command id="Fonts:favorites"     oncommand="selectCategory('fav');"/>
+    <command id="Fonts:uncat"         oncommand="selectCategory('uncat');"/>
+</commandset>
+
+<keyset id="main-keyset">
+    <key id="help-key"    keycode="&menu_help.key;"      command="Window:help"/>
+    <key id="edit-key"    keycode="&menu_edit.key;"      command="Window:edit2"/>
+    <key id="refresh-key" keycode="&button_refresh.key;" command="Fonts:refresh"/>
+    <key id="prefs-key"   keycode="&menu_prefs.key;"     command="Window:prefs"/>
+    <key id="cancel-key"  keycode="&button_cancel.key;"  command="Action:cancel"/>
+    <key id="print-key"   key="&menu_print.key;"    modifiers="accel" command="Action:print"/>
+    <key id="export-key"  key="&menu_export.key;"   modifiers="accel" command="Export:html"/>
+    <key id="bold-key"    key="&button_bold.key;"   modifiers="accel" command="Fonts:bold"/>
+    <key id="italic-key"  key="&button_italic.key;" modifiers="accel" command="Fonts:italic"/>
+    <key id="fav-key"     key="&button_fav.key;"    modifiers="accel" command="Fonts:favorites"/>
+    <key id="search-key"  key="&button_search.key;" modifiers="accel" command="Action:searchFocus"/>
+    <key id="exit-key"    key="&menu_exit.key;"     modifiers="alt"   command="Window:close"/>
+    <!-- Undocumented features:  JavaScript console (Ctrl+Shift+C) and about:config (Ctrl+Shift+A) windows -->
+    <key id="console-key" key="&jsconsole.key;"     modifiers="accel shift" command="Window:console"/>
+    <key id="config-key"  key="&aboutconfig.key;"   modifiers="accel shift" command="Window:config"/>
+</keyset>
+
+<popupset id="main-popupset">
+    <menupopup id="fontlist-popup">
+        <menuitem id="menu-popup-edit" label="&menu_popup_edit.label;" accesskey="&menu_popup_edit.accesskey;" command="Window:edit"/>
+        <menuseparator id="menu-popup-separator"/>
+        <menuitem id="menu-popup-hide" label="&menu_popup_hide.label;" accesskey="&menu_popup_hide.accesskey;" command="Action:hide"/>
+    </menupopup>
+</popupset>
+
+<tooltip id="fonttip" orient="vertical" default="false" onpopupshowing="return tooltipShow();" noautohide="false">
+    <hbox>
+        <vbox id="tooltip_left_side">
+            <image id="tooltip_topleft" src=""/>
+            <box id="tooltip_left" flex="1"/>
+            <image id="tooltip_bottomleft" src=""/>
+        </vbox>
+        <vbox>
+            <box id="tooltip_top"/>
+            <vbox id="fonttip_content">
+                <label value="Classes:"/>
+                <vbox id="fonttip-classes">
+                </vbox>
+            </vbox>
+            <box id="tooltip_bottom"/>
+        </vbox>
+        <vbox id="tooltip_right_side">
+            <image id="tooltip_topright" src=""/>
+            <box id="tooltip_right" flex="1"/>
+            <image id="tooltip_bottomright" src=""/>
+        </vbox>
+    </hbox>
+</tooltip>
+
+<vbox flex="1" id="main-content">
+    <vbox id="controls">
+        <toolbox id="main-toolbox" class="toolbox-top">
+            <menubar id="main-menu">
+                <menu   id="file-menu"
+                        label="&menu_file.label;"
+                        accesskey="&menu_file.accesskey;">
+                    <menupopup id="file-popup">
+                        <menuitem   id="menu-export-html"
+                                    label="&menu_export.label;"
+                                    accesskey="&menu_export.accesskey;"
+                                    key="export-key"
+                                    command="Export:html"
+                                    tooltiptext="&menu_export.tooltiptext;"/>
+                        <menuseparator id="menu-export-separator"/>
+                        <menuitem   id="menu-export-ini"
+                                    label="&menu_exportini.label;"
+                                    accesskey="&menu_exportini.accesskey;"
+                                    command="Export:ini"
+                                    tooltiptext="&menu_exportini.tooltiptext;"/>
+                        <menuitem   id="menu-import-ini"
+                                    label="&menu_importini.label;"
+                                    accesskey="&menu_importini.accesskey;"
+                                    command="Import:ini"
+                                    tooltiptext="&menu_importini.tooltiptext;"/>
+                        <menuitem   id="menu-print-preview"
+                                    label="&menu_printpreview.label;"
+                                    accesskey="&menu_printpreview.accesskey;"
+                                    command="Action:preview"
+                                    tooltiptext="&menu_printpreview.tooltiptext;"/>
+                        <menuitem   id="menu-print"
+                                    label="&menu_print.label;"
+                                    accesskey="&menu_print.accesskey;"
+                                    key="print-key"
+                                    command="Action:print"/>
+                        <menuseparator id="menu-export-separator"/>
+                        <menuitem   id="menu-addons"
+                                    class="menuitem-iconic"
+                                    label="&menu_addons.label;"
+                                    accesskey="&menu_addons.accesskey;"
+                                    command="Window:addons"
+                                    tooltiptext="&menu_addons.tooltiptext;"/>
+                        <menuseparator id="menu-exit-separator"/>
+                        <menuitem   id="menu-exit"
+                                    label="&menu_exit.label;"
+                                    accesskey="&menu_exit.accesskey;"
+                                    key="exit-key"
+                                    command="Window:close"/>
+                    </menupopup>
+                </menu>
+                <menu   id="fonts-menu"
+                        label="Fonts"
+                        accesskey="o">
+                    <menupopup id="fonts-popup">
+                        <menuitem   id="menu-edit"
+                                    label="&menu_edit.label;"
+                                    accesskey="&menu_edit.accesskey;"
+                                    key="edit-key"
+                                    command="Window:edit2"/>
+                        <menuitem   id="menu-edit-classes"
+                                    label="&menu_edit_classes.label;"
+                                    accesskey="&menu_edit_classes.accesskey;"
+                                    command="Window:edit_classes"/>
+                        <menuseparator id="menu-edit-separator" />
+                        <menuitem   id="menu-group-fonts"
+                                    label="&menu_group.label;"
+                                    type="checkbox"
+                                    checked="true"
+                                    accesskey="&menu_group.accesskey;"
+                                    persist="checked"
+                                    command="Fonts:refresh_maybe"/>
+                        <menuitem   id="menu-auto-refresh"
+                                    label="&menu_refresh.label;"
+                                    type="checkbox"
+                                    checked="true"
+                                    persist="checked"
+                                    command="Action:empty"
+                                    accesskey="&menu_refresh.accesskey;"/>
+                        <menuitem   id="menu-appearence"
+                                    label="&menu_prefs.label;"
+                                    accesskey="&menu_prefs.accesskey;"
+                                    key="prefs-key"
+                                    command="Window:prefs"/>
+                    </menupopup>
+                </menu>
+                <menu   id="help-menu"
+                        label="&menu_help.label;"
+                        accesskey="&menu_help.accesskey;">
+                    <menupopup id="help-popup">
+                        <menuitem   id="menu-help"
+                                    class="menuitem-iconic"
+                                    label="&menu_help_contents.label;"
+                                    accesskey="&menu_help_contents.accesskey;"
+                                    key="help-key"
+                                    command="Window:help"/>
+                        <menuseparator id="menu-help-separator"/>
+                        <menuitem   id="menu-updates"
+                                    label="&menu_updates.label;"
+                                    accesskey="&menu_updates.accesskey;"
+                                    command="Window:update"
+                                    tooltiptext="&menu_updates.tooltiptext;"/>
+                        <!-- menuitem id="menu-jsconsole" label="Javascript console..." command="Window:console"/ -->
+                        <!-- menuitem id="menu-config" label="Advanced configuration..." command="Window:config"/ -->
+                        <menuitem   id="menu-about"
+                                    label="&menu_about.label;"
+                                    accesskey="&menu_about.accesskey;"
+                                    command="Window:about"/>
+                    </menupopup>
+                </menu>
+            </menubar>
+            <toolbar id="main-toolbar" class="chromeclass-toolbar toolbar-primary" mode="icons" persist="mode">
+                <toolbarbutton id="btnRefresh"
+                    tooltiptext="&button_refresh.tooltiptext;"
+                    label="&button_refresh.label;"
+                    class="chromeclass-toolbar-additional toolbarbutton-1"
+                    iconsize="small"
+                    command="Fonts:refresh"/>
+                <toolbarbutton id="btnHome"
+                    label="&button_home.label;"
+                    tooltiptext="&button_home.tooltiptext;"
+                    class="chromeclass-toolbar-additional toolbarbutton-1"
+                    iconsize="small"
+                    command="Fonts:home"/>
+
+                <toolbarbutton id="btnFavorites"
+                    tooltiptext="&button_fav.tooltiptext;"
+                    class="chromeclass-toolbar-additional toolbarbutton-1"
+                    label="&button_fav.label;"
+                    iconsize="small"
+                    command="Fonts:favorites"/>
+                <toolbarbutton id="btnUncat"
+                    tooltiptext="&button_uncat.tooltiptext;"
+                    class="chromeclass-toolbar-additional toolbarbutton-1"
+                    label="&button_uncat.label;"
+                    iconsize="large"
+                    command="Fonts:uncat"/>
+                    
+                <toolbarseparator id="toolbar-uncat-separator"/>
+                
+                <toolbaritem>
+                    <label crop="end" class="toolbarlabel" id="label-fontclass" value="&label_class;" control="fontclass"/>
+                    <menulist id="fontclass"
+                              class="menu-iconic"
+                              label="-"
+                              value="-1"
+                              persist="label value src"
+                              readonly="1"
+                              command="Fonts:refresh_maybe"
+                              inherits="disabled">
+                        <menupopup id="fontclasspopup">
+                        </menupopup>
+                   </menulist>
+                </toolbaritem>
+                                
+                <toolbarseparator id="toolbar-fontclass-separator"/>
+                
+                <toolbaritem>
+                    <label crop="end" class="toolbarlabel" id="label-fontsize" value="&label_size;" control="fontsize"/>
+                    <menulist id="fontsize" label="12" persist="label value" readonly="1" command="Fonts:refresh_maybe">
+                        <menupopup id="fontsizepopup">
+                        </menupopup>
+                    </menulist>
+                </toolbaritem>
+                                
+                <toolbarspacer id="toolbar-fontsize-separator" width="10px" flex="0"/>
+                
+                <toolbarbutton id="btnBold"
+                    tooltiptext="&button_bold.tooltiptext;"
+                    class="chromeclass-toolbar-additional toolbarbutton-1"
+                    command="Fonts:bold"
+                    persist="checked"
+                    iconsize="small"
+                    checked="false"/>
+                <toolbarbutton id="btnItalic"
+                    tooltiptext="&button_italic.tooltiptext;"
+                    class="chromeclass-toolbar-additional toolbarbutton-1"
+                    command="Fonts:italic"
+                    persist="checked"
+                    iconsize="small"
+                    checked="false"/>
+                <toolbarbutton id="btnAllCaps"
+                    tooltiptext="&button_allcaps.tooltiptext;"
+                    class="chromeclass-toolbar-additional toolbarbutton-1"
+                    command="Fonts:allcaps"
+                    persist="checked"
+                    iconsize="small"
+                    checked="false"/>
+                <toolbarseparator id="toolbar-allcaps-separator"/>
+                
+                <toolbaritem>
+                    <stack id="search-wrapper">
+                        <hbox id="find-field-container" class="find-fast">
+                            <textbox id="find-field"
+                                multiline="false"
+                                status=""
+                                value="&button_search.label;"
+                                tooltiptext="&button_search.tooltiptext;"
+                                inherits="disabled"
+                                clickSelectsAll="true"
+                                oninput="search();"
+                                persist="value,status"/>
+                        </hbox>
+                        <hbox id="image-search-box">
+                            <image id="image-search"/>
+                        </hbox>
+                    </stack>
+                </toolbaritem>
+                
+                <toolbarbutton id="btnClearSearch"
+                    tooltiptext="&button_clearsearch.tooltiptext;"
+                    class="chromeclass-toolbar-additional toolbarbutton-1"
+                    label="&button_clearsearch.label;"
+                    iconsize="small"
+                    command="Action:clearSearch"/>                
+            </toolbar>
+            <toolbar id="sample-toolbar" class="chromeclass-toolbar" mode="icons" persist="mode">
+                <toolbaritem>
+                    <stack id="sample-wrapper">
+                        <hbox id="sample-field-container" class="find-fast">
+                            <textbox id="sample-field"
+                                multiline="false"
+                                type="autocomplete"
+                                autocompletesearch="form-history"
+                                value="&button_sample.label;"
+                                tooltiptext="&button_sample.tooltiptext;"
+                                inherits="disabled"
+                                clickSelectsAll="true"
+                                onchange="updateSampleText();"
+                                persist="value"/>
+                        </hbox>
+                        <hbox id="image-sample-box">
+                            <image id="image-sample"/>
+                        </hbox>
+                    </stack>
+                </toolbaritem>
+            </toolbar>
+        </toolbox>
+    </vbox>
+    <deck id="fonts" flex="1" persist="height" style="border: 0px;">
+        <hbox id="font-list-hbox">
+            <richlistbox
+                  id="font-list"
+                  flex="1"
+                  hidden="false"
+                  command="Window:edit"
+                  ondblclick="doCommand();">
+            </richlistbox>
+        </hbox>
+        <iframe
+            id="helpframe"
+            name="helpframe"
+            flex="1"
+            src="">
+        </iframe>
+        <!-- hbox id="debugger-box" hidden="true">
+            <vbox>
+                <image id="error-icon" class="error-icon" style="max-width: 32px; max-height: 32px;"/>
+            </vbox>
+            <textbox id="debugger" class="console" multiline="true" flex="1" minheight="100" readonly="true">
+            </textbox>
+        </hbox -->
+    </deck>
+	  <statusbar id="statusbar" class="chromeclass-status">
+        <statusbarpanel id="statusicon" hidden="false">
+  	        <hbox>
+  	            <image id="cancel-process" onclick="doCommand();" command="Action:cancel" tooltiptext="&button_cancel.tooltiptext;"/>
+  	            <image class="waiting" id="image-waiting"/>
+  	        </hbox>
+  	    </statusbarpanel>
+        <statusbarpanel id="statusmessage" label="Ready."/>
+        <statusbarpanel flex="1" id="progress-panel" class="statusbarpanel-progress">
+            <progressmeter id="progressbar" class="progressmeter-statusbar" mode="determined" value="0%" hidden="true" flex="1"/>
+        </statusbarpanel>
+        <resizer id="window-resizer"/>
+    </statusbar>
+</vbox>
+</window>

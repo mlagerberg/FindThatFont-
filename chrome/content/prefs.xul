@@ -1,0 +1,120 @@
+<?xml version="1.0"?>
+<?xml-stylesheet href="chrome://global/skin/global.css" type="text/css"?>
+<?xml-stylesheet href="chrome://findthatfont/skin/dialog.css" type="text/css"?>
+<!--
+-    This file is part of FindThatFont!
+-
+-    FindThatFont! is free software: you can redistribute it and/or modify
+-    it under the terms of the GNU General Public License as published by
+-    the Free Software Foundation, either version 3 of the License, or
+-    (at your option) any later version.
+-
+-    FindThatFont! is distributed in the hope that it will be useful,
+-    but WITHOUT ANY WARRANTY; without even the implied warranty of
+-    MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the
+-    GNU General Public License for more details.
+-   
+-    You should have received a copy of the GNU General Public License
+-    along with FindThatFont!. If not, see <http://www.gnu.org/licenses/>.
+-->
+<!DOCTYPE window SYSTEM "chrome://findthatfont/locale/findthatfont.dtd">
+<dialog id="frmPrefs" title="Preferences"
+        xmlns="http://www.mozilla.org/keymaster/gatekeeper/there.is.only.xul"
+        buttons="accept,cancel,extra1"
+        onload="loadPrefs();"
+        ondialogaccept="return savePrefs(false);"
+        ondialogcancel="return true;"
+        buttonlabelextra1="Apply"
+        ondialogextra1="savePrefs(true);"
+        buttondisabledextra1="true"
+        >
+  <script type="text/javascript"><![CDATA[
+    function loadPangrams() {
+        var mp = document.getElementById("popup-sample-text");
+        var children = mp.childNodes;
+        var mi;
+        for(var i=0; i<children.length; i++) {
+            var mi = children[i];
+            if(mi.getAttribute("label").length==0) {
+                mi.hidden=true;
+            }
+        }
+    }
+  
+    function loadPrefs() {
+        try {
+            loadPangrams();
+            
+            var prefs = Components.classes["@mozilla.org/preferences-service;1"].getService(Components.interfaces.nsIPrefBranch);
+            document.getElementById("fore-color").color = prefs.getCharPref("findthatfont.forecolor");
+            document.getElementById("back-color").color = prefs.getCharPref("findthatfont.backcolor");
+            document.getElementById("textbox-sample-text").value = prefs.getCharPref("findthatfont.sampletext");
+            document.getElementById("checkbox-tooltip").checked = ! prefs.getBoolPref("findthatfont.notooltip");
+            document.getElementById("checkbox-toolbartext").checked = prefs.getBoolPref("findthatfont.toolbartext");
+        } catch(e) {
+            opener.handleError(e);
+        }
+    }
+    
+    function savePrefs(forceListFonts) {
+        try {
+            var prefs = Components.classes["@mozilla.org/preferences-service;1"].getService(Components.interfaces.nsIPrefBranch);
+            prefs.setCharPref("findthatfont.forecolor",   document.getElementById("fore-color").getAttribute("color"));
+            prefs.setCharPref("findthatfont.backcolor",   document.getElementById("back-color").getAttribute("color"));
+            prefs.setCharPref("findthatfont.sampletext",  document.getElementById("textbox-sample-text").value);
+            prefs.setBoolPref("findthatfont.notooltip",  !document.getElementById("checkbox-tooltip").checked);
+            var toolbartext = document.getElementById("checkbox-toolbartext").checked;
+            prefs.setBoolPref("findthatfont.toolbartext", toolbartext);
+            
+            if(toolbartext) {
+                opener.document.getElementById("main-toolbar").setAttribute("mode", "full");
+            } else {
+                opener.document.getElementById("main-toolbar").setAttribute("mode", "icons");
+            }
+            
+            if(forceListFonts) {
+                opener.listFonts();
+            } else {
+                opener.listFontsMaybe();
+            }
+        } catch(e) {
+            opener.handleError(e);
+        }
+        return true;
+    }
+  ]]></script>
+  
+  <groupbox id="prefs-groupbox" flex="1">
+    <caption id="label-appearence" label="Appearence"/>
+    
+    <label id="label-sample-text" value="Sample text:" control="textbox-sample-text" />
+    <menulist id="textbox-sample-text" editable="true">
+      <menupopup id="popup-sample-text">
+        <menuitem label="&pangram.one;"   value="&pangram.one;"/>
+        <menuitem label="&pangram.two;"   value="&pangram.two;"/>
+        <menuitem label="&pangram.three;" value="&pangram.three;"/>
+        <menuitem label="&pangram.four;"  value="&pangram.four;"/>
+        <menuitem label="&pangram.five;"  value="&pangram.five;"/>
+      </menupopup>
+    </menulist>
+    
+    <hbox>
+      <vbox>
+        <hbox id="prefs-hbox1" style="margin-top: 10px;">
+          <label id="label-fore-color" value="Fore color:" flex="1"/>
+          <spacer width="10"/>
+          <colorpicker id="fore-color" type="button" style="margin-right: 5px;"/>
+        </hbox>
+        <hbox id="prefs-hbox2">
+          <label id="label-back-color" value="Back color:" flex="1"/>
+          <spacer width="10"/>
+          <colorpicker id="back-color" type="button" style="margin-right: 5px;"/>
+        </hbox>
+      </vbox>
+      <spacer flex="1"/>
+    </hbox>
+    
+    <checkbox id="checkbox-tooltip"     label="Show tooltips on font list"/>
+    <checkbox id="checkbox-toolbartext" label="Show text on toolbar buttons"/>
+  </groupbox>
+</dialog>

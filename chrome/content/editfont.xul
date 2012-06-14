@@ -1,0 +1,88 @@
+<?xml version="1.0" encoding="utf-8" ?>
+
+<!--
+-    This file is part of FindThatFont!
+-
+-    FindThatFont! is free software: you can redistribute it and/or modify
+-    it under the terms of the GNU General Public License as published by
+-    the Free Software Foundation, either version 3 of the License, or
+-    (at your option) any later version.
+-
+-    FindThatFont! is distributed in the hope that it will be useful,
+-    but WITHOUT ANY WARRANTY; without even the implied warranty of
+-    MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the
+-    GNU General Public License for more details.
+-   
+-    You should have received a copy of the GNU General Public License
+-    along with FindThatFont!. If not, see <http://www.gnu.org/licenses/>.
+-->
+
+<?xml-stylesheet href="chrome://global/skin/global.css" type="text/css"?>
+<?xml-stylesheet href="chrome://global/skin/checkbox.css" type="text/css"?>
+<?xml-stylesheet href="chrome://findthatfont/skin/editfont.css" type="text/css"?>
+
+<dialog id="frmEdit" title="Edit font list"
+        xmlns="http://www.mozilla.org/keymaster/gatekeeper/there.is.only.xul"
+        onload="createBoxes(); fillEditFonts(); window.sizeToContent();"
+        persist="screenX, screenY"
+        buttons="accept,cancel"
+        buttonlabelaccept="OK"
+        ondialogaccept="var t = doSave(); opener.listFontsMaybe(); return t;"
+        buttonlabelcancel="Cancel"
+        ondialogcancel="return true;"
+        >
+  <script src="chrome://findthatfont/content/global.js" type="text/javascript"/>
+  <script src="chrome://findthatfont/content/editfont.js" type="text/javascript"/>
+  
+  <commandset id="edit-commandset">
+    <command id="Action:update"   oncommand="updateSample()"/>
+    <command id="Action:exclude"  oncommand="enableBoxes()" />
+    <command id="Action:next"     oncommand="fontGo(1)" />
+    <command id="Action:previous" oncommand="fontGo(-1)" />
+  </commandset>
+
+  <keyset id="edit-commandset">
+    <key id="next-key"     key="N" modifiers="control" command="Action:next"/>
+    <key id="previous-key" key="P" modifiers="control" command="Action:previous"/>
+  </keyset>
+
+  <vbox id="edit-vbox">
+      <hbox>
+          <vbox flex="0">
+              <hbox>
+                  <label id="label-toolbar" class="toolbarlabel" value="Font:" control="fonts"/>
+                  <menulist id="fonts" command="Action:update">
+                      <menupopup id="fontspopup"/>
+                  </menulist>
+              </hbox>
+              <scrollbox id="samplebox" width="150" height="300" style="overflow: auto;">
+                  <vbox>
+                      <label class="fontsize-indicator">12pt:</label>
+                      <label class="samplelabel" style="font-size: 12pt;" id="sample-label-12" flex="0"/>
+                      <label class="fontsize-indicator">18pt:</label>
+                      <label class="samplelabel" style="font-size: 18pt;" id="sample-label-18" flex="0"/>
+                      <label class="fontsize-indicator">24pt:</label>
+                      <label class="samplelabel" style="font-size: 24pt;" id="sample-label-24" flex="0"/>
+                      <label class="fontsize-indicator">36pt:</label>
+                      <label class="samplelabel" style="font-size: 36pt;" id="sample-label-36" flex="0"/>
+                      <label class="fontsize-indicator">48pt:</label>
+                      <label class="samplelabel" style="font-size: 48pt;" id="sample-label-48" flex="0"/>
+                      <label class="fontsize-indicator">60pt:</label>
+                      <label class="samplelabel" style="font-size: 60pt;" id="sample-label-60" flex="0"/>
+                      <label class="fontsize-indicator">72pt:</label>
+                      <label class="samplelabel" style="font-size: 72pt;" id="sample-label-72" flex="0"/>
+                  </vbox>
+              </scrollbox>
+          </vbox>
+          <vbox>
+              <hbox id="box-classes" style="margin: 8px;">
+              </hbox>
+              <checkbox id="option-exclude" command="Action:exclude" label="Hide this font in the font list"/>
+          </vbox>
+      </hbox>
+      <hbox>
+          <button id="prevbutton" command="Action:previous" label="Previous" tooltiptext="Previous font (Ctrl+P)" />
+          <button id="nextbutton" command="Action:next" label="Next" tooltiptext="Next font (Ctrl+N)" />
+      </hbox>  
+  </vbox>
+</dialog>

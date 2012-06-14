@@ -1,0 +1,71 @@
+/*
+*    This file is part of FindThatFont!
+*
+*    FindThatFont! is free software: you can redistribute it and/or modify
+*    it under the terms of the GNU General Public License as published by
+*    the Free Software Foundation, either version 3 of the License, or
+*    (at your option) any later version.
+*
+*    FindThatFont! is distributed in the hope that it will be useful,
+*    but WITHOUT ANY WARRANTY; without even the implied warranty of
+*    MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the
+*    GNU General Public License for more details.
+*   
+*    You should have received a copy of the GNU General Public License
+*    along with FindThatFont!. If not, see <http://www.gnu.org/licenses/>.
+*/
+
+@import url("dialog.css");
+
+#clientBox {
+  background-color: #FFFFFF;
+  color: #000000;
+}
+
+#extensionName {
+  font-size: large;
+  font-weight: bold;
+}
+
+#extensionVersion {
+  font-weight: bold;
+  color: #909090;
+}
+
+#genericAbout {
+  padding: 0px 0px 10px 0px;
+  min-height: 200px;
+  width: 30em;
+}
+
+#groove {
+  margin-top: 0px;
+}
+
+#clientBox {
+  padding: 10px;
+} 
+
+#extensionDescription {
+  color: #404040;
+}
+
+.indent {
+  -moz-margin-start: 6px;
+}
+
+#extensionCreator, .contributor {
+  margin: 0px;
+} 
+
+.sectionTitle {
+  border-top: 2px solid #C0C0C0;
+  padding: 2px 0px 3px 0px;
+  margin-top: 3px;
+  font-weight: bold;
+}
+
+.image-link {
+    cursor: pointer;
+    margin-left: 10px;
+}

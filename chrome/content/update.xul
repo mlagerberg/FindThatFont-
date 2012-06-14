@@ -1,0 +1,91 @@
+<?xml version="1.0"?>
+<!--
+-    This file is part of FindThatFont!
+-
+-    FindThatFont! is free software: you can redistribute it and/or modify
+-    it under the terms of the GNU General Public License as published by
+-    the Free Software Foundation, either version 3 of the License, or
+-    (at your option) any later version.
+-
+-    FindThatFont! is distributed in the hope that it will be useful,
+-    but WITHOUT ANY WARRANTY; without even the implied warranty of
+-    MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the
+-    GNU General Public License for more details.
+-   
+-    You should have received a copy of the GNU General Public License
+-    along with FindThatFont!. If not, see <http://www.gnu.org/licenses/>.
+-->
+<?xml-stylesheet href="chrome://global/skin/global.css" type="text/css"?>
+<?xml-stylesheet href="chrome://findthatfont/skin/main.css" type="text/css"?>
+
+<!DOCTYPE window SYSTEM "chrome://branding/locale/brand.dtd">
+<dialog id="frmUpdate" title="Update &brandShortName;"
+        xmlns="http://www.mozilla.org/keymaster/gatekeeper/there.is.only.xul"
+        buttons="cancel"
+        onload="sendAjaxRequest();"
+        ondialogcancel="return true;">
+  <script type="text/javascript"><![CDATA[
+      var linkToUpdatePage;
+      
+      function sendAjaxRequest() {
+        try {
+          var xmlHttp;
+          xmlHttp = new XMLHttpRequest();
+          xmlHttp.onreadystatechange = function() {
+              if(xmlHttp.readyState == 4) {
+                  document.getElementById("desc-update").hidden = true;
+                  
+                  linkToUpdatePage = xmlHttp.responseText;
+                  if(linkToUpdatePage=="0") {
+                      document.getElementById("desc-no-update").hidden = false;
+                  } else if(linkToUpdatePage=="1") {
+                      document.getElementById("desc-error").hidden = false;
+                  } else {
+                      document.getElementById("desc-link-update").hidden = false;
+                  }
+              }
+          }
+
+          var strb = window.opener.getStringBundleBrand();
+          var updateUrl = strb.getString("updateUrl").replace(/%s/, strb.getString("appBuildID"));
+          
+          xmlHttp.open("GET", updateUrl, true);
+          xmlHttp.send(null);
+        } catch(e) {
+          window.opener.handleError("checkForUpdate: " + e);
+        }
+      }
+  ]]></script>
+  
+  <groupbox flex="1" style="padding: 25px 10px 10px 10px;">
+  
+    <hbox id="desc-update">
+        <image class="waiting"/>
+        <description>
+            Checking for updates...
+        </description>
+    </hbox>
+    <vbox id="desc-no-update" hidden="true">
+        <description style="width: 80%;">
+            There are no updates available.
+            You have the most recent version of FindThatFont!
+        </description>
+    </vbox>
+    <vbox id="desc-link-update" hidden="true">
+        <description>
+            There is a newer version of &brandShortName; available. Please click the button below to
+            open a website where you can download the update.
+        </description>
+        <hbox style="padding-top: 10px;">
+            <button label="Download &brandShortName;" oncommand="window.opener.launchURL(linkToUpdatePage); window.close();"/>
+            <spacer flex="1"/>
+        </hbox>
+    </vbox>
+    <vbox id="desc-error" hidden="true">
+        <description>
+            Could not connect to the update server. Please try again later.
+        </description>
+    </vbox>
+    
+  </groupbox>
+</dialog>

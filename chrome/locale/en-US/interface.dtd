@@ -1,0 +1,136 @@
+<!--
+-    This file is part of FindThatFont!
+-
+-    FindThatFont! is free software: you can redistribute it and/or modify
+-    it under the terms of the GNU General Public License as published by
+-    the Free Software Foundation, either version 3 of the License, or
+-    (at your option) any later version.
+-
+-    FindThatFont! is distributed in the hope that it will be useful,
+-    but WITHOUT ANY WARRANTY; without even the implied warranty of
+-    MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the
+-    GNU General Public License for more details.
+-   
+-    You should have received a copy of the GNU General Public License
+-    along with FindThatFont!. If not, see <http://www.gnu.org/licenses/>.
+-->
+
+<!--
+      This file is a small start into internationalizating FindThatFont!, although FtF has (yet) too small a public for publication in any other language than English and only the captions in the main window are incorporated in this file.
+      For complete translation-compatibility, other windows must be included in this file as well, and a .properties-file must be used for translation of strings used in the script.
+  -->
+
+<!-- Popup menu items -->
+
+<!ENTITY menu_popup_edit.accesskey  "E">
+<!ENTITY menu_popup_edit.label      "Edit...">
+
+<!ENTITY menu_popup_hide.accesskey  "H">
+<!ENTITY menu_popup_hide.label      "Hide">
+
+<!-- Menu items -->
+
+<!ENTITY menu_file.label            "File">
+<!ENTITY menu_file.accesskey        "F">
+
+<!ENTITY menu_export.key            "S">
+<!ENTITY menu_export.label          "Export to HTML...">
+<!ENTITY menu_export.accesskey      "H">
+<!ENTITY menu_export.tooltiptext    "Save the font list to an HTML (webpage) file.">
+
+<!ENTITY menu_exportini.label       "Export font list...">
+<!ENTITY menu_exportini.accesskey   "E">
+<!ENTITY menu_exportini.tooltiptext "Export the font list. Usefull to copy settings to another computer or user profile.">
+
+<!ENTITY menu_importini.label       "Import font list...">
+<!ENTITY menu_importini.accesskey   "I">
+<!ENTITY menu_importini.tooltiptext "Import the font list. Usefull to copy settings from another computer or profile.">
+
+<!ENTITY menu_printpreview.label    "Print preview">
+<!ENTITY menu_printpreview.accesskey   "r">
+<!ENTITY menu_printpreview.tooltiptext "Show a preview of what the print will look like on paper.">
+
+<!ENTITY menu_print.key             "P">
+<!ENTITY menu_print.label           "Print...">
+<!ENTITY menu_print.accesskey       "P">
+
+<!ENTITY menu_addons.label          "Add-ons...">
+<!ENTITY menu_addons.accesskey      "A">
+<!ENTITY menu_addons.tooltiptext    "Add/Remove add-ons that provide extra functionality.">
+
+<!ENTITY menu_exit.key              "X">
+<!ENTITY menu_exit.label            "Exit">
+<!ENTITY menu_exit.accesskey        "x">
+
+<!ENTITY menu_edit.key              "VK_F3">
+<!ENTITY menu_edit.label            "Edit font list...">
+<!ENTITY menu_edit.accesskey        "f">
+
+<!ENTITY menu_edit_classes.label    "Edit classes...">
+<!ENTITY menu_edit_classes.accesskey "c">
+
+<!ENTITY menu_group.label           "Group fonts by class">
+<!ENTITY menu_group.accesskey       "G">
+
+<!ENTITY menu_refresh.label         "Auto refresh">
+<!ENTITY menu_refresh.accesskey     "A">
+
+<!ENTITY menu_prefs.key             "VK_F9">
+<!ENTITY menu_prefs.label           "Appearence...">
+<!ENTITY menu_prefs.accesskey       "p">
+
+<!ENTITY menu_help.key              "VK_F1">
+<!ENTITY menu_help.label            "Help">
+<!ENTITY menu_help.accesskey        "H">
+
+<!ENTITY menu_help_contents.label   "Contents">
+<!ENTITY menu_help_contents.accesskey       "C">
+
+<!ENTITY menu_updates.label         "Check for updates...">
+<!ENTITY menu_updates.accesskey     "U">
+<!ENTITY menu_updates.tooltiptext   "Connects to the internet to automatically check if there is a new version of this application available">
+
+<!ENTITY menu_about.label           "About...">
+<!ENTITY menu_about.accesskey       "A">
+
+<!-- Labels -->
+
+<!ENTITY label_class                "Class:">
+<!ENTITY label_size                 "Size:">
+<!ENTITY label_search               "Search:">
+
+<!-- Buttons -->
+<!ENTITY button_home.label          "All">
+<!ENTITY button_home.tooltiptext    "Show all fonts">
+<!ENTITY button_fav.key             "D">
+<!ENTITY button_fav.label           "Favorites">
+<!ENTITY button_fav.tooltiptext     "Show favorites">
+<!ENTITY button_uncat.label         "Uncategorized">
+<!ENTITY button_uncat.tooltiptext   "Show uncategorized fonts">
+
+<!ENTITY button_bold.key            "B">
+<!ENTITY button_bold.tooltiptext    "Show fonts in bold">
+<!ENTITY button_italic.key          "I">
+<!ENTITY button_italic.tooltiptext  "Show fonts in italic">
+<!ENTITY button_allcaps.tooltiptext "Show fonts in upper case">
+
+<!ENTITY button_search.key          "F">
+<!ENTITY button_search.tooltiptext  "Search a font by name (Ctrl+F)">
+<!ENTITY button_search.label        "Search">
+<!ENTITY button_clearsearch.label   "Clear search">
+<!ENTITY button_clearsearch.tooltiptext  "Clear search">
+
+<!ENTITY button_refresh.key         "VK_F5">
+<!ENTITY button_refresh.label       "Refresh">
+<!ENTITY button_refresh.tooltiptext "Refresh the fontlist (F5)">
+
+<!ENTITY button_cancel.key          "VK_ESCAPE">
+<!ENTITY button_cancel.tooltiptext  "Stop process (Esc)">
+
+<!ENTITY button_sample.tooltiptext  "Enter a sample text to use in the preview">
+<!ENTITY button_sample.label        "Sample text">
+
+<!-- Other -->
+
+<!ENTITY jsconsole.key              "C">
+<!ENTITY aboutconfig.key            "A">

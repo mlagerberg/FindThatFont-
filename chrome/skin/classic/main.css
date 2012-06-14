@@ -1,0 +1,243 @@
+/*
+*    This file is part of FindThatFont!
+*
+*    FindThatFont! is free software: you can redistribute it and/or modify
+*    it under the terms of the GNU General Public License as published by
+*    the Free Software Foundation, either version 3 of the License, or
+*    (at your option) any later version.
+*
+*    FindThatFont! is distributed in the hope that it will be useful,
+*    but WITHOUT ANY WARRANTY; without even the implied warranty of
+*    MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the
+*    GNU General Public License for more details.
+*   
+*    You should have received a copy of the GNU General Public License
+*    along with FindThatFont!. If not, see <http://www.gnu.org/licenses/>.
+*/
+
+/*** TOOLBAR ***/
+label.toolbarlabel {
+    margin-top: 5px;
+    margin-bottom: 0px;
+}
+
+/*** RICHLISTBOX ***/
+richlistbox {
+    border: 0px;
+    margin: -1px;
+    background-color: -moz-field;
+    color: -moz-fieldtext;
+}
+
+richlistitem.rlitem {
+    border-bottom: 1px dotted #CCC;
+    padding: 4px 7px 5px 7px;
+}
+
+richlistitem.rlitem[selected="true"]  {
+    background-color: #3F66BC;
+    background-image: url("images/fntlist_bg.png");
+    background-repeat: repeat-x;
+    color: #FFF;
+}
+
+richlistitem.rlhead, richlistitem.rlempty {
+    padding: 4px 7px 0px 7px;
+    background-color: #FFF;
+    background-image: url("images/fnthead_bg.png");
+    background-repeat: repeat-x;
+    color: #000;
+    height: 24px;
+}
+richlistitem.rlhead[selected="true"], richlistitem.rlempty[selected="true"]  {
+    background-color: #FFF;
+    color: #000;
+}
+richlistitem.rlempty {
+    background-image: url("images/fnthead_bg2.png");
+    color: #555;
+}
+richlistitem.rlempty[selected="true"] {
+    color: #555;
+}
+/*** FONT ITEMS ***/
+.font-name {
+    border-bottom: 1px solid black;
+    font-family: "Lucida Console";
+}
+.font-head {
+    font-family: "Lucida Sans";
+    font-size: 10pt;
+    font-weight: bold;
+}
+.sample {
+    margin-left: 1cm;
+    padding: 0;
+    border: 1px solid #DDD;
+}
+.sample-bold      {    font-weight: bold;}
+.sample-italic    {    font-style: italic;}
+.sample-allcaps   {    text-transform: uppercase;}
+.sample-smallcaps {    font-variant: small-caps;}
+
+/*** BUTTONS ***/
+#btnHome      {      list-style-image: url("images/home.png");}
+#btnFavorites {      list-style-image: url("images/favicon0.png");}
+#btnUncat     {      list-style-image: url("images/uncat.png");}
+#btnBold      {      list-style-image: url("images/text_bold.png");}
+#btnItalic    {      list-style-image: url("images/text_italic.png");}
+#btnAllCaps   {      list-style-image: url("images/text_allcaps.png");}
+#btnRefresh   {      list-style-image: url("images/refresh.png");}
+#btnClearSearch {    list-style-image: url("images/cancel.png");}
+
+#main-toolbar toolbarbutton image {
+    margin: 2px;
+}
+/*
+#main-toolbar[mode="icons"] toolbarbutton { -moz-box-orient: horizontal;}
+#main-toolbar[mode="full"]  toolbarbutton { -moz-box-orient: vertical;}
+*/
+
+toolbarbutton.fav  {
+    -moz-appearance:  none;
+    border-width: 0;
+    background-color: transparent;
+}
+toolbarbutton.fav[add="0"] {
+    list-style-image: url("images/favicon0.png");
+}
+toolbarbutton.fav[add="1"] {
+    list-style-image: url("images/favicon1.png");
+}
+
+#cancel-process  {
+    background-color: transparent;
+    list-style-image: url("images/stop.png");
+    -moz-image-region: rect(0px, 16px, 16px, 0px);
+    max-width: 16px;
+    max-height: 16px;
+}
+#cancel-process:hover {
+  -moz-image-region: rect(0px, 32px, 16px, 16px);
+}
+#cancel-process:hover:active {
+  -moz-image-region: rect(0px, 48px, 16px, 32px);
+}
+
+/*** MENU ***/
+#menu-help      {   list-style-image: url("images/help.png");}
+#menu-addons    {   list-style-image: url("images/addons.png");}
+
+/*** SEARCH BAR ***/
+#search-wrapper {
+    margin: 2px 0px 2px 1px;
+    padding: 0px;
+}
+
+#image-search-box {
+    -moz-box-align: center;
+}
+
+#image-search {
+    list-style-image: url("images/search.png");
+    background-color: transparent;
+    margin-left: 4px;
+}
+
+#find-field {
+    padding-left: 23px;
+    padding-top:  4px;
+    margin-right: 0px;
+}
+
+/*** SAMPLE TEXT BAR ***/
+#sample-wrapper {
+    margin: 2px 0px 2px 1px;
+    padding: 0px;
+}
+
+#image-sample-box {
+    -moz-box-align: center;
+    padding: 5px;
+}
+
+#image-sample {
+    list-style-image: url("images/sampletext.png");
+    background-color: transparent;
+    margin-left: 4px;
+}
+
+#sample-field {
+    padding-left: 23px;
+    padding-top:  4px;
+    margin-right: 0px;
+}
+
+/*** TOOLTIP ***/
+#fonttip {
+	-moz-appearance:  none;
+	background-color: transparent;
+    border-width:   0px;
+    max-width: 289px;
+    max-height: 167px;
+    padding: 4px 8px 8px 4px;
+}
+#fonttip_content > label {
+    font-weight: bold;
+}
+#fonttip_content vbox label {
+    margin-left: 2eM;
+}
+#fonttip_content {
+    background-image: url("images/tooltips/tooltip_mid.png");
+    background-color: transparent;  
+}
+
+#tooltip_left_side  {    width: 6px;}
+#tooltip_right_side {    width: 5px;}
+#tooltip_top {
+    height: 4px;
+    background-image: url("images/tooltips/tooltip_top.png");
+    background-color: transparent;
+}
+#tooltip_bottom {
+    height: 4px;
+    background-image: url("images/tooltips/tooltip_bottom.png");
+    background-color: transparent;
+}
+#tooltip_left {
+    background-image: url("images/tooltips/tooltip_left.png");
+    background-color: transparent !important;
+}
+#tooltip_right {
+    background-image: url("images/tooltips/tooltip_right.png");
+    background-color: transparent;
+}
+
+#tooltip_topleft {
+	list-style-image: url("images/tooltips/tooltip_topleft.png");
+	background-color: transparent;
+}
+#tooltip_topright {
+	list-style-image: url("images/tooltips/tooltip_topright.png");
+	background-color: transparent;
+}
+#tooltip_bottomleft {
+	list-style-image: url("images/tooltips/tooltip_bottomleft.png");
+	background-color: transparent;
+}
+#tooltip_bottomright {
+	list-style-image: url("images/tooltips/tooltip_bottomright.png");
+	background-color: transparent;
+}
+
+/***/
+#fontclasspopup {
+    max-height: 400px !important;
+}
+image.waiting {
+    list-style-image: url("images/loading.gif");
+    background-color: transparent;
+    max-width: 16px;
+    max-height: 16px;
+}

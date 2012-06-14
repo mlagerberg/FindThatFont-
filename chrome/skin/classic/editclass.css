@@ -1,0 +1,28 @@
+/*
+*    This file is part of FindThatFont!
+*
+*    FindThatFont! is free software: you can redistribute it and/or modify
+*    it under the terms of the GNU General Public License as published by
+*    the Free Software Foundation, either version 3 of the License, or
+*    (at your option) any later version.
+*
+*    FindThatFont! is distributed in the hope that it will be useful,
+*    but WITHOUT ANY WARRANTY; without even the implied warranty of
+*    MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the
+*    GNU General Public License for more details.
+*   
+*    You should have received a copy of the GNU General Public License
+*    along with FindThatFont!. If not, see <http://www.gnu.org/licenses/>.
+*/
+@import url("dialog.css");
+
+label.desclabel {
+    font-weight: bold;
+}
+
+#classespopup {
+    max-height: 300px !important;
+}
+
+#resetbutton   { list-style-image: url("images/reset_class.png");}
+#defaultbutton { list-style-image: url("images/default_class.png");}

@@ -1,0 +1,34 @@
+@import url("dialog.css");
+
+#samplebox {
+    border: 1px solid #000;
+    margin: 5px;
+    padding: 0px;
+    background-color: #FFF;
+}
+label.samplelabel {
+    color: #000;
+    margin: 5px;
+    background-color: #FFF;
+    border-bottom: 1px solid #AAA;
+}
+
+label.fontsize-indicator {
+    font-size: 9pt;
+}
+
+#prevbutton {
+    list-style-image: url("images/previous.png");
+}
+#nextbutton {
+    list-style-image: url("images/next.png");
+    -moz-box-direction: reverse;
+}
+#nextbutton image.button-icon {
+    margin-left: 10px;
+    margin-right:   0px;
+}
+
+#fontspopup {
+    max-height: 400px !important;
+}

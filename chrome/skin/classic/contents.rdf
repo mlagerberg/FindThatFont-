@@ -1,0 +1,37 @@
+<!--
+-    This file is part of FindThatFont!
+-
+-    FindThatFont! is free software: you can redistribute it and/or modify
+-    it under the terms of the GNU General Public License as published by
+-    the Free Software Foundation, either version 3 of the License, or
+-    (at your option) any later version.
+-
+-    FindThatFont! is distributed in the hope that it will be useful,
+-    but WITHOUT ANY WARRANTY; without even the implied warranty of
+-    MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the
+-    GNU General Public License for more details.
+-   
+-    You should have received a copy of the GNU General Public License
+-    along with FindThatFont!. If not, see <http://www.gnu.org/licenses/>.
+-->
+<?xml version="1.0"?>
+<RDF:RDF xmlns:RDF="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+         xmlns:chrome="http://www.mozilla.org/rdf/chrome#">
+
+  <!-- list all the packages being supplied by this jar -->
+  <RDF:Seq about="urn:mozilla:skin:root">
+    <RDF:li resource="urn:mozilla:skin:modern/1.0" />
+  </RDF:Seq>
+
+  <!-- skin information -->
+  <RDF:Description about="urn:mozilla:skin:modern/1.0"
+        chrome:displayName="Modern"
+        chrome:author="mathijs.jurresip.nl"
+        chrome:name="modern/1.0">
+    <chrome:packages>
+      <RDF:Seq about="urn:mozilla:skin:modern/1.0:packages">
+        <RDF:li resource="urn:mozilla:skin:modern/1.0:findthatfont"/>
+      </RDF:Seq>
+    </chrome:packages>
+  </RDF:Description>
+</RDF:RDF>

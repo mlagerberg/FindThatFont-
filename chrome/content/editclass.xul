@@ -1,0 +1,98 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<!--
+-    This file is part of FindThatFont!
+-
+-    FindThatFont! is free software: you can redistribute it and/or modify
+-    it under the terms of the GNU General Public License as published by
+-    the Free Software Foundation, either version 3 of the License, or
+-    (at your option) any later version.
+-
+-    FindThatFont! is distributed in the hope that it will be useful,
+-    but WITHOUT ANY WARRANTY; without even the implied warranty of
+-    MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the
+-    GNU General Public License for more details.
+-   
+-    You should have received a copy of the GNU General Public License
+-    along with FindThatFont!. If not, see <http://www.gnu.org/licenses/>.
+-->
+
+<?xml-stylesheet href="chrome://global/skin/global.css" type="text/css"?>
+<?xml-stylesheet href="chrome://findthatfont/skin/editclass.css" type="text/css"?>
+
+<dialog id="frmEditClasses" title="Edit classes"
+        xmlns="http://www.mozilla.org/keymaster/gatekeeper/there.is.only.xul"
+        onload="initDropDown(); window.sizeToContent();"
+        persist="screenX, screenY"
+        buttons="accept"
+        buttonlabelaccept="Done"
+        ondialogaccept="var t = save(); opener.fillFontClassList(); opener.listFontsMaybe(); return t;"
+        >
+  <script src="chrome://findthatfont/content/global.js" type="text/javascript"/>
+  <script src="chrome://findthatfont/content/editclass.js" type="text/javascript"/>
+  
+  <commandset id="edit-commandset">
+    <command id="Action:reset"    oncommand="reset()"/>
+    <command id="Action:save"     oncommand="save()" />
+    <command id="Action:default"  oncommand="restore()" />
+    <command id="Action:select"   oncommand="changed(true); save(); select()" />
+    <command id="Action:changed"  oncommand="changed(false);" />
+  </commandset>
+
+  <vbox id="edit-vbox">
+      <grid>
+        <columns>
+          <column/>
+          <column flex="1"/>
+        </columns>
+        <rows>
+          <row>
+            <label id="label-class" class="desclabel" value="Class:" control="classes"/>
+            <menulist id="classes" command="Action:select">
+                <menupopup id="classespopup"/>
+            </menulist>
+          </row>
+          <row>
+            <label id="label-name" class="desclabel" value="Name:" control="class-name"/>
+            <textbox id="class-name"
+                multiline="false"
+                clickSelectsAll="true"
+                cols="35"
+                oninput="changed(false);"
+                maxlength="127"
+                />
+          </row>
+          <row flex="1">
+            <label id="label-desc" class="desclabel" value="Description:" control="class-desc"/>
+            <textbox id="class-desc"
+                multiline="true"
+                rows="3"
+                cols="25"
+                clickSelectsAll="true"
+                oninput="changed(false);"
+                maxlength="255"
+                />
+          </row>
+          <row style="vertical-align: top">
+            <vbox>
+              <button id="resetbutton"
+                      disabled="true"
+                      command="Action:reset"
+                      label="Reset"
+                      tooltiptext="Reset previous settings for this class"
+                    />
+              <button id="defaultbutton"
+                      command="Action:default"
+                      label="Default"
+                      tooltiptext="Restore default settings for this class"
+                    />
+            </vbox>
+            <checkbox id="class-hidden"
+                      label="Hide this class in the font list"
+                      command="Action:changed"
+                      tooltiptext="If selected, this class will not be visible in the list"
+                    />
+          </row>
+        </rows>
+      </grid>
+  </vbox>
+</dialog>

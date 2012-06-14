@@ -1,0 +1,165 @@
+<!--
+-    This file is part of FindThatFont!
+-
+-    FindThatFont! is free software: you can redistribute it and/or modify
+-    it under the terms of the GNU General Public License as published by
+-    the Free Software Foundation, either version 3 of the License, or
+-    (at your option) any later version.
+-
+-    FindThatFont! is distributed in the hope that it will be useful,
+-    but WITHOUT ANY WARRANTY; without even the implied warranty of
+-    MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the
+-    GNU General Public License for more details.
+-   
+-    You should have received a copy of the GNU General Public License
+-    along with FindThatFont!. If not, see <http://www.gnu.org/licenses/>.
+-->
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<html>
+<head>
+	<meta HTTP-EQUIV="CONTENT-TYPE" CONTENT="text/html; charset=windows-1252">
+	<title>FindThatFont! help file</title>
+	<style type="text/css"><!--
+		body, span, div, p, h2 {
+            font-family: "Trebuchet MS", serif;
+            font-size: 9pt;
+            line-height: 1.8eM;
+        }
+        body {
+            width: 60%;
+        }
+        span.code     { font-family: "Courier New", monospace;}
+        span.li-title { font-weight: bold;}
+        h2            { font-size: 12pt; }
+        a             { text-decoration: underline;}
+        p, li         { text-align: justify;}
+	--></style>
+	<script type="text/javascript"><!--
+	    function launch(anURL) {
+	       try {
+	          var uri = Components
+              .classes["@mozilla.org/network/simple-uri;1"]
+              .getService(Components.interfaces.nsIURI);
+              uri.spec = anURL;
+
+              Components.classes["@mozilla.org/uriloader/external-protocol-service;1"]
+              .getService(Components.interfaces.nsIExternalProtocolService)
+              .loadUrl(uri);
+	       } catch(e) {}
+	    }
+	--></script>
+</head>
+<body id="body">
+<p align="center">
+    <img src="chrome://findthatfont/skin/images/logo.png" alt="[logo]"><br />
+    <b><span style="font-size: 16pt">FindThatFont!</span> <span style="font-size: 11pt;">v1.0.0</span></b>
+</p>
+<hr />
+<p>This is the help file for FindThatFont!</p>
+<h2>About FindThatFont!</h2>
+<p>FindThatFont! is an open source tool for viewing and organizing your fonts. You can use it to
+see how a certain text looks in a certain font, to compare different fonts and to
+categorize all fonts on your system.
+</p>
+<p>You can <a href="https://github.com/monkeyinmysoup/FindThatFont-">fork FindThatFont!</a> on Github.
+</p>
+<hr />
+<h2>How to use</h2>
+<p>
+  <ul>
+  	<li><span class="li-title">List fonts</span><br />
+      Upon startup, FindThatFont! displays a list of all fonts, grouped in categories like
+      '<i>Serif</i>', '<i>Sans serif</i>', '<i>Handwritten</i>',
+      '<i>Comic</i>', etc. Using the dropdown boxes above the list you may select a
+      subset of fonts to be displayed. Note that fonts may appear in more
+      than one category at the same time. Select type 'Uncategorized' to see a list of fonts
+      that are not yet classified. Note that you can create your own categories by selecting
+      the menu item '<span class="code">Fonts &gt; Edit classes...</span>'.
+      </li>
+      <li><span class="li-title">Categorize fonts</span><br />
+      If you have fonts that are not categorized, or fonts that are mistakenly
+      miscategorized, you can correct by double clicking on the font.
+      This will open the edit font list' dialog, which you can also open by selecting the menu
+      '<span class="code">Fonts</span>' &gt; '<span class="code">Edit font list...</span>'
+      or by pressing '<span class="code">F3</span>'. In this dialog you can select all classes
+      to which you want to add the font, and you have the option to exclude the font from
+      displaying in the font list and exported HTML documents.
+      This option will <b>not</b> uninstall the font from you system!
+      </li>
+      <li><span class="li-title">Exporting and printing</span><br />
+      Using the option in menu '<span class="code">File</span>' &gt;
+      '<span class="code">Export as HTML...</span>' (or '<span class="code">Ctrl+S</span>'),
+      you can save the generated fontlist to disk.
+      This will generate a W3C-compliant web page listing the selected fonts with a preview
+      of each of the fonts. You can directly print the font list by selecting
+      '<span class="code">Print...</span>' in the '<span class="code">File</span>'.
+      </li>
+      <li><span class="li-title">Appearance</span><br />
+      To change the colors of the fonts or to change the sentence used in the examples,
+      move to '<span class="code">Fonts</span> &gt; <span class="code">Appearance...</span>',
+      or press '<span class="code">F9</span>'. In the appearing window you can change the colors
+      or enter a different preview sentence. The default sentence is "My Faxed Joke Won A Pager
+      In A Cable TV Quiz Show", a sentence that contains every letter in the alphabet.
+      </li>
+  </ul>
+</p>
+<hr />
+<h2>Default font categories:</h2>
+<p>
+    <ul id="classlist">
+        [When opened in FindThatFont!, a list of all classes will appear here]
+    </ul>
+</p>
+<hr />
+<h2>Compatibility:</h2>
+<p>
+    This program is build to run on Windows and Linux.<br />
+    Note that, due to the nature of XUL, FindThatFont! can only display unicode fonts, which means that some fonts, like
+    WingDings, are displayed with a default font, often Times New Roman.
+</p>
+<hr />
+<h2>Credits:</h2>
+<p>
+    FindThatFont! was originally made by Mathijs Lagerberg (<a href="javascript:launch('http://monkeyinmysoup.com');" title="http://monkeyinmysoup.com">monkeyinmysoup.com</a>) and now <a href="https://github.com/monkeyinmysoup/FindThatFont-">open sourced on Github</a>.<br />
+    Toolbar icons are from the Silk Icon set, created by Mark James (<a href="javascript:launch('http://www.famfamfam.com');" title="http://www.famfamfam.com">www.famfamfam.com</a>).
+</p>
+<hr />
+<h2>Version history:</h2>
+<ul>
+    <li><span class="li-title">1.0</span> &mdash;
+    Many changes to the program. Best improvements: speed, threading and editable categories.
+    The program is a lot faster when viewing a single category, due to the new way in which the
+    fontlist is stored. Second: threading is implemented so the interface no longer locks up
+    when refreshing the font list, and you can interrupt refreshing the font list by pressing
+    the Escape key or the cancel button on the statusbar.
+    Third improvement: categories are now editable by the user. The user can choose
+    which categories to show or hide, and can change the names and descriptions and thus is able
+    to create new categories.<br />
+    The interface is also improved: with toolbar buttons for 'All classes',
+    'favorites' and 'uncategorized items'; in the preference window the user can toggle wether or not
+    to show labels on the toolbar buttons; a description of a class is showed in a tooltip on the
+    classname in the list view; searching is improved to function similar to the Firefox webbrowser.<br />
+    Numerous minor bugs are solved.
+    </li>
+    <li><span class="li-title">0.3</span> &mdash;
+    Second official release. New features: option to add fonts to a shortlist of favorites, to
+    enable the user to compare certain fonts more easily, and a search bar, with which users can
+    find fonts by (partial) name. Reorganized menus. Solved a bug that caused fonts to appear
+    in default system font when displayed in certain font size.
+    </li>
+    <li><span class="li-title">0.2</span> &mdash;
+    First official release. Includes extension manager (and thus allows to install extensions).
+    Class headers of empty classes are shown in gray. Context menu added to font list. New
+    font classes defined that should better fit your needs. Tooltip appears on the font list
+    that shows in which classes the font under the cursor is put. Stores fontlist.ini in profile,
+    so that it is not overwritten when installing a newer version of FindThatFont!. Allows to print
+    the font list directly from the program rather than exporting to HTML file first. Includes
+    'check for updates' option.
+    </li>
+    <li><span class="li-title">0.1 Beta</span> &mdash;
+    First Beta release. Exports to HTML. Supports custom colors and custom preview sentence.
+    </li>
+</ul>
+<hr />
+</body>
+</html>
