@@ -1,0 +1,114 @@
+<!--
+-    This file is part of FindThatFont!
+-
+-    FindThatFont! is free software: you can redistribute it and/or modify
+-    it under the terms of the GNU General Public License as published by
+-    the Free Software Foundation, either version 3 of the License, or
+-    (at your option) any later version.
+-
+-    FindThatFont! is distributed in the hope that it will be useful,
+-    but WITHOUT ANY WARRANTY; without even the implied warranty of
+-    MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the
+-    GNU General Public License for more details.
+-   
+-    You should have received a copy of the GNU General Public License
+-    along with FindThatFont!. If not, see <http://www.gnu.org/licenses/>.
+-->
+<?xml version="1.0"?>
+<?xml-stylesheet href="chrome://previewbox/skin/prevb.css" type="text/css"?>
+
+<!DOCTYPE window SYSTEM "chrome://previewbox/locale/previewbox.dtd">
+<overlay id="previewbox-Overlay" 
+    xmlns="http://www.mozilla.org/keymaster/gatekeeper/there.is.only.xul"
+    xmlns:html="http://www.w3.org/1999/xhtml">
+    
+    <script type="application/x-javascript" src="chrome://previewbox/content/previewbox.js" />
+    
+    <commandset id="main-commands">
+        <command id="PreviewBox:prevbShow"     oncommand="PreviewBox.showSample();"/>
+        <command id="PreviewBox:prevbCollapse" oncommand="PreviewBox.hideSample();"/>
+        <command id="PreviewBox:prevbSwitch"   oncommand="PreviewBox.switchMode();"/>
+    </commandset>
+
+    <menupopup id="fontlist-popup">
+      <menuitem
+        label="&prevbox.view;"
+        accesskey="&prevbox.viewAccesskey;"
+        insertbefore="menu-popup-separator"
+        command="PreviewBox:prevbShow"/>
+    </menupopup>
+    
+    <vbox id="fonts">
+        <splitter
+            id="prevb-splitter"
+            state="collapsed"
+            collapse="after"
+            resizebefore="closest"
+            resizeafter="closest"
+            persist="state"
+            insertafter="helpframe">
+            <grippy/>
+        </splitter>
+        
+        <vbox id="prevb" insertbefore="debugger-box" persist="height">
+            <toolbar toolbarname="&prevbox.toolbarname;" class="chromeclass-toolbar toolbar-primary">
+                <toolbarspacer id="prevb-spacer" flex="1"/>
+                <radiogroup id="sample-option"
+                            orient="horizontal"
+                            command="PreviewBox:prevbSwitch"
+                            persist="value">
+                    <radio  id="option-characters"
+                            label="&prevbox.sampleChars;"
+                            value="0"
+                            persist="selected"/>
+                    <radio  id="option-lipsum"
+                            label="&prevbox.sampleLipsum;"
+                            value="1"
+                            persist="selected"/>
+                </radiogroup>
+                <toolbarbutton
+                    id="prevb-close-button"
+                    flex="0"
+                    class="tabs-closebutton"
+                    command="PreviewBox:prevbCollapse"
+                    tooltiptext="&prevbox.hide;"
+                />
+            </toolbar>
+            <box id="prevb-chars" flex="1" hidden="true" persist="hidden">
+                <box id="prevb-chars-sub" flex="1">
+                    <html:div>
+                        <html:p id="prevb-chars-container"></html:p>
+                    </html:div>
+                </box>
+            </box>
+            <vbox id="prevb-preview" flex="1" hidden="false" persist="hidden">
+                <html:h2 class="prevb-preview">Lorem ipsum dolor sit amet</html:h2>
+                <html:h3 class="prevb-preview">"Neque porro quisquam est qui dolorem ipsum quia dolor sit amet, consectetur, adipisci velit..."</html:h3>
+                <html:div class="prevb-preview">
+                    <html:p class="prevb-preview">
+                      Lorem ipsum dolor sit amet, consectetuer adipiscing elit. In elementum massa ac enim.
+                      Duis pulvinar justo ut dolor. Aliquam nisl. Integer fermentum lacus vel erat. Vestibulum
+                      porttitor consequat eros. Fusce orci. Donec fringilla nonummy quam. Vivamus eget eros.
+                      Aliquam erat volutpat. Integer tempor semper eros. Aliquam accumsan pulvinar ligula. In
+                      hac habitasse platea dictumst. Nunc bibendum imperdiet nisl. Nulla quis velit non ipsum
+                      pharetra tristique.
+                     </html:p><html:p class="prevb-preview">
+                      Mauris tincidunt sodales dui. Quisque lacus magna, imperdiet eget, varius ut, vulputate
+                      quis, ante. Curabitur elementum neque. Sed lacinia facilisis sem. Aenean hendrerit. Nam
+                      justo. Sed vel justo. Morbi sit amet nulla ut tortor posuere eleifend. Morbi condimentum
+                      nibh ac quam. Aliquam cursus, lectus id volutpat dapibus, urna est luctus dolor, et
+                      fermentum ante libero dictum tellus. Maecenas non neque imperdiet enim tincidunt
+                      fermentum. Etiam velit est, sodales ut, ultrices non, aliquam sed, turpis.
+                     </html:p><html:p class="prevb-preview">
+                      Vivamus ipsum. Morbi lectus. Quisque eget arcu ut turpis lobortis mollis. Donec faucibus
+                      tincidunt lorem. Donec ultrices elit. Vestibulum eu odio. Cras posuere commodo pede.
+                      Vestibulum nec ante. Suspendisse laoreet blandit lacus. Etiam condimentum velit eu libero.
+                      Phasellus vel dolor. Donec lorem dui, semper ut, pharetra sagittis, pretium eu, diam.
+                      Fusce elit. Nam dignissim mollis lacus. Mauris enim est, dignissim non, congue eu, dictum
+                      a, ligula.
+                   </html:p>
+                </html:div>
+            </vbox>
+        </vbox>
+   </vbox>
+</overlay>

@@ -1,0 +1,6 @@
+<!ENTITY prevbox.hide "Hide">
+<!ENTITY prevbox.view "View sample">
+<!ENTITY prevbox.viewAccesskey "V">
+<!ENTITY prevbox.sampleLipsum "Lorem Ipsum">
+<!ENTITY prevbox.sampleChars "Character codes">
+<!ENTITY prevbox.toolbarname "PreviewBox toolbar">

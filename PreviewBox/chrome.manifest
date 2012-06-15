@@ -1,0 +1,7 @@
+overlay	chrome://findthatfont/content/main.xul	   chrome://previewbox/content/previewbox.xul
+
+content	previewbox	jar:chrome/previewbox.jar!/content/
+
+skin	previewbox	classic/1.0	jar:chrome/previewbox.jar!/skin/
+
+locale	previewbox	en    jar:chrome/previewbox.jar!/locale/en-US/
