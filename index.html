@@ -1,0 +1,117 @@
+<!doctype html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="chrome=1">
+    <title>Findthatfont- by monkeyinmysoup</title>
+
+    <link rel="stylesheet" href="stylesheets/styles.css">
+    <link rel="stylesheet" href="stylesheets/pygment_trac.css">
+    <script src="javascripts/scale.fix.js"></script>
+    <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
+    <!--[if lt IE 9]>
+    <script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+  </head>
+  <body>
+    <div class="wrapper">
+      <header>
+        <h1 class="header">Findthatfont-</h1>
+        <p class="header">FindThatFont! is a handy tool that allows to preview fonts that are installed on your system and to classify them into over 30 different categories. By using this categorization you can find any font on your system faster than ever before. Made in XUL and pretty old.</p>
+
+        <ul>
+          <li class="download"><a class="buttons" href="https://github.com/monkeyinmysoup/FindThatFont-/zipball/master">Download ZIP</a></li>
+          <li class="download"><a class="buttons" href="https://github.com/monkeyinmysoup/FindThatFont-/tarball/master">Download TAR</a></li>
+          <li><a class="buttons github" href="https://github.com/monkeyinmysoup/FindThatFont-">View On GitHub</a></li>
+        </ul>
+
+        <p class="header">This project is maintained by <a class="header name" href="https://github.com/monkeyinmysoup">monkeyinmysoup</a></p>
+
+
+      </header>
+      <section>
+        <h1>
+<a name="findthatfont-" class="anchor" href="#findthatfont-"><span class="octicon octicon-link"></span></a>FindThatFont-</h1>
+
+<p>FindThatFont! is a handy tool that allows to preview fonts that are installed on your system and to classify them into over 30 different categories. By using this categorization you can find any font on your system faster than ever before.</p>
+
+<p><strong>Note: Development on FindThatFont! halted after December 2007. It works nicely and is stable, but (scroll down) further development is appreciated. Anyone willing to adopt the project is welcome to do so.</strong></p>
+
+<p>The project contains an example addon (located in the /PreviewBox folder) that shows a larger preview of the selected font, as a fancy bit of Lipsum, or as a character map.</p>
+
+<h2>
+<a name="instructions" class="anchor" href="#instructions"><span class="octicon octicon-link"></span></a>Instructions</h2>
+
+<ul>
+<li>Download XULRunner (<a href="https://developer.mozilla.org/en/XULRunner">https://developer.mozilla.org/en/XULRunner</a>) and unzip it in the /xulrunner folder. Please note the known issues in this regard.</li>
+</ul><h2>
+<a name="binary-downloads" class="anchor" href="#binary-downloads"><span class="octicon octicon-link"></span></a>Binary downloads</h2>
+
+<ul>
+<li>If you're not interested in the source you can download the Windows installer or Linux package from Sourceforge: <a href="https://sourceforge.net/projects/findthatfont/files/">https://sourceforge.net/projects/findthatfont/files/</a>
+</li>
+</ul><h2>
+<a name="known-issues" class="anchor" href="#known-issues"><span class="octicon octicon-link"></span></a>Known issues</h2>
+
+<ul>
+<li>There's an issue with non-unicode fonts (like Wingdings) not showing in the app at all</li>
+<li>It was last tested with XULRunner 1.9, while the latest version at time of writing (June 2012) is 14.0.</li>
+</ul><h2>
+<a name="other-to-dos" class="anchor" href="#other-to-dos"><span class="octicon octicon-link"></span></a>Other to-dos</h2>
+
+<ul>
+<li>The lack of OO in the Javascripts will probably make a decent programmer cry a little. Some brave soul should fix this.</li>
+<li>Interface could use an overhaul (although, looks quite nice already, eh?).</li>
+<li>Update-urls are still pointing to a personal website that no longer exists. Update files should be hosted elsewhere.</li>
+<li>There are no build scripts. On every update the following must be done manually:
+
+<ul>
+<li>Creating a new version requires using ResHacker on findthatfont.exe to update version number</li>
+<li>Changing some boolean flags in prefs.js</li>
+<li>Update version numbers in:
+
+<ul>
+<li>application.ini (version and build id)</li>
+<li>brand.dtd</li>
+<li>brand.properties (also build id)</li>
+<li>findthatfont.exe</li>
+<li>help.html</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>App saves ini file more often than necessary. It should only save the ini file when something (either a class or a font) has been changed.</li>
+<li>Add better comments/documentation.</li>
+<li>Prepare app for localization.</li>
+<li>Cache entire 'All classes' xul-code, maybe even inbetween sessions.</li>
+<li>Custom update checker should be replaced by Mozillas MAR-file update system. Or be removed.</li>
+<li>Add option to view fonts that are not installed. Note: using file.launch() a font file can be opened using the system font viewer, which automatically load the font into memory and allows to use it in other programs (under Windows).</li>
+<li>Add: install and uninstall fonts. Note: copy font file to Windows font folder, and add something to the registry (using a custom XPCOM-element).</li>
+<li>Still uses .ini files (old school!). Should use JSON or something more reasonable.</li>
+</ul><h1>
+<a name="features" class="anchor" href="#features"><span class="octicon octicon-link"></span></a>Features</h1>
+
+<ul>
+<li>Shows a preview of all fonts installed on your system, either grouped in categories or in alphabetical order</li>
+<li>Extendible through extensions, as easy to install as Firefox extensions</li>
+<li>Classify fonts yourself, in 36 different categories</li>
+<li>You can edit the categories to your own liking</li>
+<li>Long list of fonts already categorised</li>
+<li>Option to hide fonts that you’ll never use</li>
+<li>Create a dynamic short-list of favourites that you want to compare</li>
+<li>Search a font by name</li>
+<li>Print list of fonts on paper</li>
+<li>Export font list to HTML</li>
+<li>Custom sample text, color and font size</li>
+<li>Import and export functionality to transfer categorisations between computers or user-profiles</li>
+<li>Runs on Windows and Linux</li>
+</ul>
+      </section>
+      <footer>
+        <p><small>Hosted on <a href="https://pages.github.com">GitHub Pages</a> using the Dinky theme</small></p>
+      </footer>
+    </div>
+    <!--[if !IE]><script>fixScale(document);</script><![endif]-->
+		
+  </body>
+</html>
