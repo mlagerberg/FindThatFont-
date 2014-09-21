@@ -61,7 +61,7 @@ Array.prototype.searchIndex = function(refArray, element, left, right) {
 // Inserts an element at the right spot in a sorted array
 Array.prototype.insertSorted = function(refArray, value) {
     var x = -1;
-    if(this.length!=0) {
+    if(this.length !== 0) {
         //dump("searchIndex("+value+"["+refArray[value]+"],0,"+(this.length-1)+")   ... this.length="+this.length);
         x = this.searchIndex(refArray, value, 0, this.length-1);
     }
@@ -78,7 +78,7 @@ String.prototype.left = function(count) {
         return this;
     else
         return this.substring(0, count-3) + "...";
-}
+};
 
 String.prototype.nl2br = function() {
     var text = escape(this);
@@ -91,8 +91,8 @@ String.prototype.nl2br = function() {
         re_nlchar = /%0D/g ;
     }
     return unescape(text.replace(re_nlchar,'<br />'));
-}
+};
 
 String.prototype.br2nl = function() {
     return this.replace(/\<br\ \/\>/g,'\n');
-}
+};

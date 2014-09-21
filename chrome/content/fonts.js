@@ -238,25 +238,15 @@ function readFonts() {
     var langgroup = "";
     var fonttype  = "";
     try {
-        var fontList = Components.classes["@mozilla.org/gfx/fontlist;1"].createInstance();
-        if (fontList) {
-            // Create an enumerator for all the fonts:
-            fontList = fontList.QueryInterface(Components.interfaces.nsIFontList);
-            var fontEnumerator = fontList.availableFonts(langgroup, fonttype);
-            
-            if(fontEnumerator.hasMoreElements()) {
-                // Cycle through the fonts
-                while(fontEnumerator.hasMoreElements()) {
-            		    var fontName = fontEnumerator.getNext();
-            		    fontName = fontName.QueryInterface(Components.interfaces.nsISupportsString);
-            		    allFonts.push(new Font(fontName.toString()));
-            		    allFonts[allFonts.length-1].init(allFonts.length-1);
-                }
-            } else {
-                handleError("readFonts: no fonts for the specified constraints.");
+        var fontEnumerator = Components.classes["@mozilla.org/gfx/fontenumerator;1"].getService(Components.interfaces.nsIFontEnumerator);
+        var fontList = fontEnumerator.EnumerateAllFonts({});
+        if(fontList.length > 0) {
+            // Cycle through the fonts
+            for(var i =0 ; i < fontList.length; i++) {
+                allFonts.push(new Font(fontList[i]));
             }
-      	} else {
-            handleError("readFonts: no fontList object.");
+        } else {
+            handleError("readFonts: no fonts for the specified constraints.");
         }
     } catch(e) {
         handleError("readFonts: "+e);
@@ -356,8 +346,9 @@ function listFontsOfClass(rlb, curClassIx, classes, style, sampleText) {
     if(curClassIx==CLASS_UNCAT) {
         for(var i=0; i<allFonts.length; i++) {
             if(allFonts[i].isUndefined() && !allFonts[i].isHidden()) {
-                if(displayed==0)
+                if(displayed === 0) {
                     rlb.appendChild(newRichListHeader("Uncategorized", "Contains the font that are not classified into any category.", true));
+                }
                 rlb.appendChild(
                     newRichListItem(
                         i

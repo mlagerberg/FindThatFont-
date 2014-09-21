@@ -61,10 +61,9 @@
     <command id="Action:print"        oncommand="printContent(false)"/>
     <command id="Action:preview"      oncommand="printContent(true)"/>
     <command id="Action:hide"         oncommand="hideFont()"/>
-    <!-- command id="Action:search"       oncommand="search()"/ -->
     <command id="Action:cancel"       oncommand="stopProcess()"/>
     <command id="Action:clearSearch"  oncommand="clearSearch()"/>
-    <command id="Action:searchFocus"  oncommand="document.getElementById('search-bar').select();"/>
+    <command id="Action:searchFocus"  oncommand="document.getElementById('find-field').select();"/>
     <command id="Export:html"         oncommand="exportToHtml()"/>
     <command id="Export:ini"          oncommand="exportIni()"/>
     <command id="Import:ini"          oncommand="importIni()"/>
@@ -235,12 +234,13 @@
                                     key="help-key"
                                     command="Window:help"/>
                         <menuseparator id="menu-help-separator"/>
-                        <menuitem   id="menu-updates"
+                        <!--<menuitem   id="menu-updates"
                                     label="&menu_updates.label;"
                                     accesskey="&menu_updates.accesskey;"
                                     command="Window:update"
                                     tooltiptext="&menu_updates.tooltiptext;"/>
-                        <!-- menuitem id="menu-jsconsole" label="Javascript console..." command="Window:console"/ -->
+                                    -->
+                        <menuitem id="menu-jsconsole" label="Javascript console..." command="Window:console"/>
                         <!-- menuitem id="menu-config" label="Advanced configuration..." command="Window:config"/ -->
                         <menuitem   id="menu-about"
                                     label="&menu_about.label;"
@@ -329,24 +329,21 @@
                 <toolbarseparator id="toolbar-allcaps-separator"/>
                 
                 <toolbaritem>
-                    <stack id="search-wrapper">
-                        <hbox id="find-field-container" class="find-fast">
-                            <textbox id="find-field"
-                                multiline="false"
-                                status=""
-                                value="&button_search.label;"
-                                tooltiptext="&button_search.tooltiptext;"
-                                inherits="disabled"
-                                clickSelectsAll="true"
-                                oninput="search();"
-                                persist="value,status"/>
-                        </hbox>
-                        <hbox id="image-search-box">
-                            <image id="image-search"/>
-                        </hbox>
-                    </stack>
+                    <hbox id="image-search-box">
+                        <image id="image-search" />
+                    </hbox>
+                    <hbox id="find-field-container" class="find-fast">
+                        <textbox id="find-field"
+                            multiline="false"
+                            status=""
+                            value="&button_search.label;"
+                            tooltiptext="&button_search.tooltiptext;"
+                            inherits="disabled"
+                            clickSelectsAll="true"
+                            oninput="search();"
+                            persist="value,status"/>
+                    </hbox>
                 </toolbaritem>
-                
                 <toolbarbutton id="btnClearSearch"
                     tooltiptext="&button_clearsearch.tooltiptext;"
                     class="chromeclass-toolbar-additional toolbarbutton-1"
@@ -354,25 +351,23 @@
                     iconsize="small"
                     command="Action:clearSearch"/>                
             </toolbar>
-            <toolbar id="sample-toolbar" class="chromeclass-toolbar" mode="icons" persist="mode">
+            <toolbar id="sample-toolbar" class="chromeclass-toolbar" persist="mode">
                 <toolbaritem>
-                    <stack id="sample-wrapper">
-                        <hbox id="sample-field-container" class="find-fast">
-                            <textbox id="sample-field"
-                                multiline="false"
-                                type="autocomplete"
-                                autocompletesearch="form-history"
-                                value="&button_sample.label;"
-                                tooltiptext="&button_sample.tooltiptext;"
-                                inherits="disabled"
-                                clickSelectsAll="true"
-                                onchange="updateSampleText();"
-                                persist="value"/>
-                        </hbox>
-                        <hbox id="image-sample-box">
-                            <image id="image-sample"/>
-                        </hbox>
-                    </stack>
+                    <hbox id="image-sample-box">
+                        <image id="image-sample"/>
+                    </hbox>
+                    <hbox id="sample-field-container" class="find-fast">
+                        <textbox id="sample-field"
+                            multiline="false"
+                            type="autocomplete"
+                            autocompletesearch="form-history"
+                            value="&button_sample.label;"
+                            tooltiptext="&button_sample.tooltiptext;"
+                            inherits="disabled"
+                            clickSelectsAll="true"
+                            onchange="updateSampleText();"
+                            persist="value"/>
+                    </hbox>
                 </toolbaritem>
             </toolbar>
         </toolbox>
@@ -412,7 +407,6 @@
         <statusbarpanel flex="1" id="progress-panel" class="statusbarpanel-progress">
             <progressmeter id="progressbar" class="progressmeter-statusbar" mode="determined" value="0%" hidden="true" flex="1"/>
         </statusbarpanel>
-        <resizer id="window-resizer"/>
     </statusbar>
 </vbox>
 </window>

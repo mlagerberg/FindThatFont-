@@ -59,23 +59,7 @@ function checkForUpdates() {
 }
 */
 
-/*
-// This is a self-created update mechanism, that didn't really
-// work out that well. I keep it here in case I still want to do
-// something with it.
 function checkForUpdates() {
-    try {
-        var strb = getStringBundleBrand();
-        var updateUrl = strb.getFormattedString("updateUrl",[
-                            strb.getString("appBuildID")
-                        ]);
-        window.openDialog(updateUrl, "Updates", "chrome,centerscreen,resizable=yes,width=400,height=400,dependent");
-    } catch(e) {
-        handleError("checkForUpdates: "+e);
-    }
-}
-*/
-
-function checkForUpdates() {
-    window.openDialog("update.xul", "Update", "chrome,centerscreen,resizable=no,width=400,height=200,dependent");
+    window.alert("Updates are no longer distributed through the app. Visit https://github.com/monkeyinmysoup/FindThatFont- to check for updates.");
+    //window.openDialog("update.xul", "Update", "chrome,centerscreen,resizable=no,width=400,height=200,dependent");
 }

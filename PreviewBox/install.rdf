@@ -35,7 +35,6 @@
     <em:description>Adds a 'Lorem Ipsum' preview box to the interface, and a preview of individual characters and symbols</em:description>
     <em:homepageURL>https://github.com/monkeyinmysoup/FindThatFont-</em:homepageURL>
     <em:iconURL>chrome://previewbox/skin/icon.png</em:iconURL>
-    <em:updateURL>http://mathijs.jurresip.nl/xul/findthatfont/extensions/updates.rdf</em:updateURL>
     
     <em:file>
       <Description about="urn:mozilla:extension:file:previewbox.jar">

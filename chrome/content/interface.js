@@ -20,7 +20,7 @@ var fontUnderMouse = -1;
 // The first function that runs when the program starts
 function init() {
     var sb = document.getElementById("find-field");
-    if(sb.getAttribute("value").length==0) {
+    if(sb.getAttribute("value").length === 0) {
         sb.value = "Find font";
         sb.setAttribute("value", sb.value);
     }
@@ -50,7 +50,7 @@ function reInitFonts() {
     var success = readIniFile(getFilename());
     
     fillFontClassList();
-    listFonts();   
+    listFonts();
 }
 
 // Saves any changes to the ini file.
@@ -356,7 +356,7 @@ function startWaiting(message, mode) {
     progress.setAttribute("hidden","false");
     document.getElementById("statusicon").hidden = false;
     
-    disableInterface(true);    
+    disableInterface(true);
     return progress;
 }
 
@@ -367,7 +367,7 @@ function keepWaiting(progress, percentage) {
 // Hides the progress bar
 function stopWaiting(progress) {
     progress.setAttribute("hidden", "true");
-    showMessage(fontsShown+" fonts");
+    showMessage(fontsShown === 1 ? "1 font" : fontsShown + " fonts");
     document.getElementById("statusicon").hidden = true;
     disableInterface(false);
 }
@@ -575,7 +575,7 @@ function search() {
         }
         stopWaiting(progress);
         
-        sbar.setAttribute("status", (resultcount == 0 ? "notfound" : ""));
+        sbar.setAttribute("status", (resultcount === 0 ? "notfound" : ""));
     } catch(e) {
         handleError("search: "+e);
     }
@@ -606,19 +606,7 @@ function handleError(exception) {
 
 // Writes a message to the debug panel
 function debug(exception) {
-    /*
-    //{todo} weghalen, en xul-gedeelte ook
-    var prefs = Components.classes["@mozilla.org/preferences-service;1"].getService(Components.interfaces.nsIPrefBranch);
-    if(prefs.getBoolPref("findthatfont.showdebugging")) {
-        var console = document.getElementById("debugger");
-        var console_box = document.getElementById("debugger-box");
-        if(console_box.getAttribute("hidden")=="true")
-            console_box.setAttribute("hidden","false");
-        console.value = console.value+"\r\n"+exception;
-    } else {
-        dumpError(exception);
-    }*/
-    dump("Error:\n   "+exception + "\nStacktrace:\n" + getCallStack());   
+    dump("Error:\n   "+exception + "\nStacktrace:\n" + getCallStack());
 }
 
 function dumpError(str) {

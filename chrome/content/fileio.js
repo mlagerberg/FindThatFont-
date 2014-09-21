@@ -23,9 +23,7 @@ function getAppPath() {
     var appPath = Components.classes["@mozilla.org/file/directory_service;1"]
                  .getService(Components.interfaces.nsIProperties)
                  .get("resource:app", Components.interfaces.nsIFile);
-    return ((appPath.path.search(/\\/) != -1)
-            ? appPath.path + "\\"
-            : appPath.path + "/");
+    return ((appPath.path.search(/\\/) != -1) ? appPath.path + "\\" : appPath.path + "/");
 }
 
 // Returns the path to the profile directory
@@ -33,9 +31,7 @@ function getProfilePath() {
     var profPath = Components.classes["@mozilla.org/file/directory_service;1"]
                  .getService(Components.interfaces.nsIProperties)
                  .get("ProfD", Components.interfaces.nsIFile);
-    return ((profPath.path.search(/\\/) != -1)
-            ? profPath.path + "\\"
-            : profPath.path + "/");
+    return ((profPath.path.search(/\\/) != -1) ? profPath.path + "\\" : profPath.path + "/");
 }
 
 // Returns the path to the INI file
@@ -54,13 +50,14 @@ function getFilename() {
 //  0x40 = If set, each write will wait for both the file data and file status to be physically updated.
 //  0x80 = With PR_CREATE_FILE, if the file does not exist, the file is created. If the file already exists, no action and NULL is returned.
 function saveIniFile(filename) {
-    if(allFonts.length==0)
+    if(allFonts.length === 0) {
         return;
+    }
     var progress = startWaiting("Saving...", "undetermined");
     try {
         var file = Components.classes["@mozilla.org/file/local;1"].createInstance(Components.interfaces.nsILocalFile);
         file.initWithPath(filename);
-        if(file.exists()==false) {
+        if(file.exists() === false) {
             file.create(Components.interfaces.nsIFile.NORMAL_FILE_TYPE, 420);
         }
         var outputStream = Components.classes["@mozilla.org/network/file-output-stream;1"].createInstance(Components.interfaces.nsIFileOutputStream);
@@ -84,7 +81,7 @@ function saveIniFile(filename) {
         }
         
         outputStream.close();
-  	} catch(e) {
+    } catch(e) {
         handleError("function saveIniFile("+filename+"): "+e);
     }
     stopWaiting(progress);
@@ -96,7 +93,7 @@ function readIniFile(filename) {
     try {
         var file = Components.classes["@mozilla.org/file/local;1"].createInstance(Components.interfaces.nsILocalFile);
         file.initWithPath(filename);
-        if(file.exists() == false) {
+        if(file.exists() === false) {
             return false;
         }
         // open an input stream from file

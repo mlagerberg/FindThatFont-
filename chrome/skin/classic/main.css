@@ -17,8 +17,11 @@
 
 /*** TOOLBAR ***/
 label.toolbarlabel {
-    margin-top: 5px;
+    margin-top: 7px;
     margin-bottom: 0px;
+}
+toolbar {
+    min-height: 32px;
 }
 
 /*** RICHLISTBOX ***/
@@ -133,44 +136,48 @@ toolbarbutton.fav[add="1"] {
     margin: 2px 0px 2px 1px;
     padding: 0px;
 }
-
 #image-search-box {
     -moz-box-align: center;
+    padding-left: 4px;
 }
-
 #image-search {
     list-style-image: url("images/search.png");
     background-color: transparent;
-    margin-left: 4px;
+    margin-right: -24px;
+    cursor: text;
+    pointer-events: none;
 }
-
 #find-field {
     padding-left: 23px;
     padding-top:  4px;
-    margin-right: 0px;
+    margin-right: 0;
 }
 
 /*** SAMPLE TEXT BAR ***/
-#sample-wrapper {
-    margin: 2px 0px 2px 1px;
-    padding: 0px;
+#sample-toolbar {
+    padding-left: 3px;
 }
-
+#sample-wrapper {
+    margin: 2px 0 2px 1px;
+    padding: 0;
+}
 #image-sample-box {
     -moz-box-align: center;
-    padding: 5px;
+    padding-left: 4px;
 }
-
 #image-sample {
     list-style-image: url("images/sampletext.png");
     background-color: transparent;
-    margin-left: 4px;
+    margin-right: -24px;
+    cursor: text;
+    pointer-events: none;
 }
-
 #sample-field {
     padding-left: 23px;
     padding-top:  4px;
-    margin-right: 0px;
+    margin-bottom: 4px;
+    margin-right: 0;
+    min-width: 54em;
 }
 
 /*** TOOLTIP ***/
