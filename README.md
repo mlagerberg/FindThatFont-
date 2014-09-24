@@ -9,7 +9,9 @@ The project contains an example addon (located in the /PreviewBox folder) that s
 
 ### Instructions
 
-- If you clone the repo, you must also download XULRunner (https://developer.mozilla.org/en/XULRunner) and unzip it in the /xulrunner folder. The [releases][https://github.com/monkeyinmysoup/FindThatFont-/releases] come with XULRunner included.    
+- If you clone the repo, you must also download XULRunner (https://developer.mozilla.org/en/XULRunner) and unzip it in the /xulrunner folder. The [releases][releases] come with XULRunner included.    
+
+[releases]: https://github.com/monkeyinmysoup/FindThatFont-/releases
 
 ### Known issues
 
