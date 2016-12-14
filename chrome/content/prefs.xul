@@ -85,7 +85,7 @@
   ]]></script>
   
   <groupbox id="prefs-groupbox" flex="1">
-    <caption id="label-appearence" label="Appearence"/>
+    <caption id="label-appearence" label="Appearance"/>
     
     <label id="label-sample-text" value="Sample text:" control="textbox-sample-text" />
     <menulist id="textbox-sample-text" editable="true">
@@ -101,7 +101,7 @@
     <hbox>
       <vbox>
         <hbox id="prefs-hbox1" style="margin-top: 10px;">
-          <label id="label-fore-color" value="Fore color:" flex="1"/>
+          <label id="label-fore-color" value="Text color:" flex="1"/>
           <spacer width="10"/>
           <colorpicker id="fore-color" type="button" style="margin-right: 5px;"/>
         </hbox>

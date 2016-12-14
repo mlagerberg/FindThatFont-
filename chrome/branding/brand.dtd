@@ -1,8 +1,8 @@
 <!ENTITY  brandShortName        "FindThatFont!">
 <!ENTITY  brandFullName         "FindThatFont!">
 <!ENTITY  vendorShortName       "MathijsLagerberg">
-<!ENTITY  app.version           "1.0.1">
+<!ENTITY  app.version           "1.0.2">
 <!ENTITY  app.creator           "Mathijs Lagerberg">
-<!ENTITY  app.url               "https://github.com/monkeyinmysoup/FindThatFont-">
+<!ENTITY  app.url               "https://github.com/mlagerberg/FindThatFont-">
 <!ENTITY  app.silkicons         "Mark James">
 <!ENTITY  app.silkiconsUrl      "http://www.famfamfam.com">

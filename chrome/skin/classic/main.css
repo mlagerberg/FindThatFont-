@@ -39,8 +39,6 @@ richlistitem.rlitem {
 
 richlistitem.rlitem[selected="true"]  {
     background-color: #3F66BC;
-    background-image: url("images/fntlist_bg.png");
-    background-repeat: repeat-x;
     color: #FFF;
 }
 

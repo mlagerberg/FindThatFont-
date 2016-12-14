@@ -76,7 +76,7 @@
 <!ENTITY menu_refresh.accesskey     "A">
 
 <!ENTITY menu_prefs.key             "VK_F9">
-<!ENTITY menu_prefs.label           "Appearence...">
+<!ENTITY menu_prefs.label           "Appearance...">
 <!ENTITY menu_prefs.accesskey       "p">
 
 <!ENTITY menu_help.key              "VK_F1">

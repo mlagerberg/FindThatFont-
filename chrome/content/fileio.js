@@ -22,7 +22,7 @@ const defaultFile      = "fontlist.ini";
 function getAppPath() {
     var appPath = Components.classes["@mozilla.org/file/directory_service;1"]
                  .getService(Components.interfaces.nsIProperties)
-                 .get("resource:app", Components.interfaces.nsIFile);
+                 .get("CurProcD", Components.interfaces.nsIFile);
     return ((appPath.path.search(/\\/) != -1) ? appPath.path + "\\" : appPath.path + "/");
 }
 
