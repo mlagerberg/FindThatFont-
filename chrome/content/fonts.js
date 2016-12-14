@@ -85,6 +85,13 @@ var listFontsParam = {
             window.setTimeout(listFontsParam.next, listFontsParam.timeout);
             listFontsParam.updateProgress();
         } else {
+            // Finally, also add the uncategorized items
+            listFontsParam.displayed += listFontsOfClass(
+                                            listFontsParam.rlb
+                                            , CLASS_UNCAT
+                                            , listFontsParam.classes
+                                            , listFontsParam.style
+                                            , listFontsParam.sampleText);
             listFontsParam.stopped();
         }
     },
